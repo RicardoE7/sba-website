@@ -2,6 +2,16 @@
   box-sizing: border-box;
 }
 
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #050505;
+}
+
+a {
+  color: inherit;
+}
+
 .site-header {
   position: fixed;
   top: 0;
@@ -60,4 +70,77 @@
 .header-btn:hover {
   background: white;
   color: black;
+}
+
+.hero {
+  min-height: 100vh;
+  padding: 120px 64px 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #050505;
+  color: white;
+}
+
+.hero-content {
+  max-width: 620px;
+}
+
+.hero-eyebrow {
+  margin-bottom: 18px;
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 0.8rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+}
+
+.hero h1 {
+  margin: 0;
+  font-size: clamp(4rem, 8vw, 8.5rem);
+  line-height: 0.9;
+  letter-spacing: -0.06em;
+}
+
+.hero-description {
+  max-width: 520px;
+  margin: 28px 0 36px;
+  color: rgba(255, 255, 255, 0.68);
+  font-size: 1.05rem;
+  line-height: 1.8;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 18px;
+}
+
+.primary-btn,
+.secondary-btn {
+  padding: 14px 24px;
+  border-radius: 999px;
+  text-decoration: none;
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.primary-btn {
+  background: white;
+  color: black;
+}
+
+.secondary-btn {
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: white;
+}
+
+.hero-visual {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.hero-watch {
+  max-width: 420px;
+  width: 100%;
 }
