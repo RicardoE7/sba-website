@@ -273,3 +273,91 @@ a {
   letter-spacing: 0.12em;
   text-transform: uppercase;
 }
+
+/* =========================
+   FEATURED COLLECTION
+========================= */
+
+.featured-collection {
+  min-height: 100vh;
+  padding: 120px 64px;
+  background: #050505;
+  color: white;
+}
+
+.collection-header {
+  max-width: 760px;
+  margin-bottom: 64px;
+}
+
+.collection-eyebrow {
+  margin-bottom: 18px;
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 0.8rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+}
+
+.collection-header h2 {
+  margin: 0;
+  font-size: clamp(3rem, 6vw, 6rem);
+  line-height: 0.95;
+  letter-spacing: -0.05em;
+}
+
+.collection-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+
+.watch-card {
+  padding: 34px;
+  min-height: 560px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 32px;
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.08),
+    rgba(255, 255, 255, 0.02)
+  );
+  overflow: hidden;
+  transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+}
+
+.watch-card:hover {
+  transform: translateY(-12px);
+  border-color: rgba(255, 255, 255, 0.22);
+  box-shadow: 0 30px 80px rgba(255, 255, 255, 0.08);
+}
+
+.watch-card img {
+  width: 100%;
+  max-height: 320px;
+  object-fit: contain;
+  margin-bottom: 32px;
+  transition: transform 0.35s ease;
+}
+
+.watch-card:hover img {
+  transform: scale(1.06);
+}
+
+.watch-series {
+  margin: 0 0 10px;
+  color: rgba(255, 255, 255, 0.48);
+  font-size: 0.75rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.watch-card h3 {
+  margin: 0 0 14px;
+  font-size: 2rem;
+}
+
+.watch-card p:last-child {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.62);
+  line-height: 1.7;
+}
