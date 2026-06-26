@@ -207,3 +207,69 @@ a {
   max-width: 460px;
   width: 100%;
 }
+
+/* =========================
+   CRAFTSMANSHIP
+========================= */
+
+.craftsmanship {
+  min-height: 100vh;
+  padding: 120px 64px;
+  display: flex;
+  align-items: center;
+  gap: 72px;
+  background: #050505;
+  color: white;
+}
+
+.craft-image,
+.craft-content {
+  flex: 1;
+}
+
+.craft-image img {
+  width: 100%;
+  border-radius: 28px;
+  object-fit: cover;
+}
+
+.craft-eyebrow {
+  margin-bottom: 18px;
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 0.8rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+}
+
+.craft-content h2 {
+  margin: 0;
+  font-size: clamp(3rem, 6vw, 6rem);
+  line-height: 0.95;
+  letter-spacing: -0.05em;
+}
+
+.craft-content > p {
+  max-width: 520px;
+  margin: 28px 0 42px;
+  color: rgba(255, 255, 255, 0.68);
+  font-size: 1.05rem;
+  line-height: 1.8;
+}
+
+.craft-stats {
+  display: flex;
+  gap: 42px;
+}
+
+.craft-stats span {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.craft-stats p {
+  margin: 8px 0 0;
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
