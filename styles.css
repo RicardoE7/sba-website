@@ -144,3 +144,12 @@ a {
   max-width: 420px;
   width: 100%;
 }
+
+.scroll-showcase {
+    height: 300vh;
+    background: #050505;
+}
+
+.showcase-sticky {
+    height: 100vh;
+}
