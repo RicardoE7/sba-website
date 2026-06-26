@@ -72,6 +72,10 @@ a {
   color: black;
 }
 
+/* =========================
+   HERO
+========================= */
+
 .hero {
   min-height: 100vh;
   padding: 120px 64px 64px;
@@ -145,11 +149,61 @@ a {
   width: 100%;
 }
 
+/* =========================
+   SCROLL SHOWCASE
+========================= */
+
 .scroll-showcase {
-    height: 300vh;
-    background: #050505;
+  height: 300vh;
+  background: #050505;
+  color: white;
 }
 
 .showcase-sticky {
-    height: 100vh;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  padding: 120px 64px 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+.showcase-copy {
+  max-width: 520px;
+}
+
+.showcase-eyebrow {
+  margin-bottom: 18px;
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 0.8rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+}
+
+.showcase-copy h2 {
+  margin: 0;
+  font-size: clamp(3.5rem, 7vw, 7rem);
+  line-height: 0.95;
+  letter-spacing: -0.05em;
+}
+
+.showcase-copy p {
+  max-width: 480px;
+  margin-top: 24px;
+  color: rgba(255, 255, 255, 0.68);
+  font-size: 1.05rem;
+  line-height: 1.8;
+}
+
+.showcase-visual {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.showcase-watch {
+  max-width: 460px;
+  width: 100%;
 }
