@@ -6,6 +6,7 @@ const showcase = document.querySelector(".scroll-showcase");
 const title = document.querySelector("#showcase-title");
 const description = document.querySelector("#showcase-description");
 const copy = document.querySelector(".showcase-copy");
+const loaderElement = document.querySelector("#model-loader");
 
 let currentStepIndex = 0;
 let isChangingText = false;
@@ -40,16 +41,15 @@ function lerp(min, max, t) {
 function getResponsiveSettings() {
   const width = canvas.clientWidth;
 
-  // Clamp width between mobile and desktop sizes
   const t = Math.min(Math.max((width - 360) / (1440 - 360), 0), 1);
 
- const scale = width >= 500 ? 2.1: lerp(1.2, 1.8, t);
+  const scale = width >= 500 ? 2.1 : lerp(1.2, 1.8, t);
 
-return {
-  scale,
-  cameraY: lerp(0.4, 1.0, t),
-  cameraZ: lerp(11, 9, t),
-};
+  return {
+    scale,
+    cameraY: lerp(0.4, 1.0, t),
+    cameraZ: lerp(11, 9, t),
+  };
 }
 
 function applyResponsiveSettings() {
@@ -115,6 +115,10 @@ loader.load(
     applyResponsiveSettings();
 
     scene.add(watchModel);
+
+    if (loaderElement) {
+      loaderElement.classList.add("is-hidden");
+    }
   },
   undefined,
   (error) => {
@@ -163,7 +167,6 @@ function updateScrollAnimation() {
   watchModel.rotation.x = 0.1 + progress * 0.35;
   watchModel.position.x = progress * -0.55;
 
-  // Keep scale responsive
   watchModel.scale.setScalar(getResponsiveSettings().scale);
 
   const stepIndex = Math.min(
