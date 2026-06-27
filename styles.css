@@ -212,9 +212,11 @@ a {
   justify-content: center;
 }
 
-.showcase-watch {
-  max-width: 460px;
+.showcase-canvas {
   width: 100%;
+  max-width: 640px;
+  height: 640px;
+  display: block;
 }
 
 /* =========================

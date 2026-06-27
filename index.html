@@ -51,18 +51,16 @@
         <div class="showcase-copy">
             <p class="showcase-eyebrow">Craftsmanship</p>
 
-            <h2>VVS Diamonds</h2>
+            <h2 id="showcase-title">VVS Diamonds</h2>
 
-            <p>
+            <p id="showcase-description">
                 Each stone is selected for brilliance,
                 clarity, and flawless symmetry.
             </p>
         </div>
 
         <div class="showcase-visual">
-            <img src="images/watch.png"
-                 alt="Luxury Watch"
-                 class="showcase-watch">
+            <canvas id="watch-canvas" class="showcase-canvas"></canvas>
         </div>
 
     </div>
@@ -184,6 +182,15 @@
     </div>
   </div>
 </footer>
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@0.165.0/build/three.module.js",
+    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.165.0/examples/jsm/"
+  }
+}
+</script>
+<script type="module" src="script.js"></script>
 </body>
 
 </html>
