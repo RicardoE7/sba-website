@@ -43,11 +43,13 @@ function getResponsiveSettings() {
   // Clamp width between mobile and desktop sizes
   const t = Math.min(Math.max((width - 360) / (1440 - 360), 0), 1);
 
-  return {
-    scale: lerp(1.2, 2.0, t),
-    cameraY: lerp(0.4, 1.0, t),
-    cameraZ: lerp(11, 9, t),
-  };
+ const scale = width >= 500 ? 2.1: lerp(1.2, 1.8, t);
+
+return {
+  scale,
+  cameraY: lerp(0.4, 1.0, t),
+  cameraZ: lerp(11, 9, t),
+};
 }
 
 function applyResponsiveSettings() {
