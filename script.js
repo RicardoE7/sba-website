@@ -7,8 +7,6 @@ const title = document.querySelector("#showcase-title");
 const description = document.querySelector("#showcase-description");
 const copy = document.querySelector(".showcase-copy");
 
-const BASE_SCALE = 2;
-
 let currentStepIndex = 0;
 let isChangingText = false;
 
@@ -21,16 +19,65 @@ const camera = new THREE.PerspectiveCamera(
   100
 );
 
-camera.position.set(0, 1, 9);
-
 const renderer = new THREE.WebGLRenderer({
   canvas,
   alpha: true,
   antialias: true,
 });
 
-renderer.setSize(canvas.clientWidth, canvas.clientHeight);
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+let watchModel;
+
+/* =====================================
+   Responsive camera + model sizing
+===================================== */
+
+function lerp(min, max, t) {
+  return min + (max - min) * t;
+}
+
+function getResponsiveSettings() {
+  const width = canvas.clientWidth;
+
+  // Clamp width between mobile and desktop sizes
+  const t = Math.min(Math.max((width - 360) / (1440 - 360), 0), 1);
+
+  return {
+    scale: lerp(1.2, 2.0, t),
+    cameraY: lerp(0.4, 1.0, t),
+    cameraZ: lerp(11, 9, t),
+  };
+}
+
+function applyResponsiveSettings() {
+  const settings = getResponsiveSettings();
+
+  camera.position.set(0, settings.cameraY, settings.cameraZ);
+
+  if (watchModel) {
+    watchModel.scale.setScalar(settings.scale);
+  }
+}
+
+function resizeRenderer() {
+  const width = canvas.clientWidth;
+  const height = canvas.clientHeight;
+
+  renderer.setSize(width, height, false);
+
+  camera.aspect = width / height;
+  camera.updateProjectionMatrix();
+
+  applyResponsiveSettings();
+}
+
+resizeRenderer();
+window.addEventListener("resize", resizeRenderer);
+
+/* =====================================
+   Lighting
+===================================== */
 
 const ambientLight = new THREE.AmbientLight(0xffffff, 1.8);
 scene.add(ambientLight);
@@ -43,7 +90,9 @@ const fillLight = new THREE.DirectionalLight(0xffffff, 1.5);
 fillLight.position.set(-4, 2, 3);
 scene.add(fillLight);
 
-let watchModel;
+/* =====================================
+   Load Model
+===================================== */
 
 const loader = new GLTFLoader();
 
@@ -59,8 +108,9 @@ loader.load(
     watchModel.position.y -= center.y;
     watchModel.position.z -= center.z;
 
-    watchModel.scale.setScalar(BASE_SCALE);
     watchModel.rotation.set(0.1, -0.4, 0);
+
+    applyResponsiveSettings();
 
     scene.add(watchModel);
   },
@@ -69,6 +119,10 @@ loader.load(
     console.error("Error loading watch model:", error);
   }
 );
+
+/* =====================================
+   Showcase Text
+===================================== */
 
 const showcaseSteps = [
   {
@@ -88,18 +142,27 @@ const showcaseSteps = [
   },
 ];
 
+/* =====================================
+   Scroll Animation
+===================================== */
+
 function updateScrollAnimation() {
   if (!watchModel) return;
 
   const rect = showcase.getBoundingClientRect();
   const scrollableDistance = showcase.offsetHeight - window.innerHeight;
 
-  const progress = Math.min(Math.max(-rect.top / scrollableDistance, 0), 1);
+  const progress = Math.min(
+    Math.max(-rect.top / scrollableDistance, 0),
+    1
+  );
 
   watchModel.rotation.y = -0.4 + progress * Math.PI * 1.4;
   watchModel.rotation.x = 0.1 + progress * 0.35;
   watchModel.position.x = progress * -0.55;
-  watchModel.scale.setScalar(BASE_SCALE);
+
+  // Keep scale responsive
+  watchModel.scale.setScalar(getResponsiveSettings().scale);
 
   const stepIndex = Math.min(
     Math.floor(progress * showcaseSteps.length),
@@ -115,6 +178,7 @@ function updateScrollAnimation() {
       description.textContent = showcaseSteps[stepIndex].description;
 
       currentStepIndex = stepIndex;
+
       copy.classList.remove("is-changing");
 
       setTimeout(() => {
@@ -123,6 +187,10 @@ function updateScrollAnimation() {
     }, 280);
   }
 }
+
+/* =====================================
+   Render Loop
+===================================== */
 
 function animate() {
   updateScrollAnimation();
