@@ -378,18 +378,23 @@ a {
 ========================= */
 
 .heritage {
+  position: relative;
   min-height: 100vh;
   padding: 120px 64px;
   display: flex;
   align-items: center;
+  overflow: hidden;
   background:
-    linear-gradient(rgba(5, 5, 5, 0.35), rgba(5, 5, 5, 0.9)),
+    radial-gradient(circle at 80% 40%, rgba(255, 255, 255, 0.08), transparent 32%),
+    linear-gradient(rgba(5, 5, 5, 0.2), rgba(5, 5, 5, 0.95)),
     #050505;
   color: white;
 }
 
 .heritage-content {
-  max-width: 820px;
+  position: relative;
+  z-index: 2;
+  max-width: 860px;
 }
 
 .heritage-eyebrow {
@@ -407,7 +412,7 @@ a {
   letter-spacing: -0.05em;
 }
 
-.heritage p:last-child {
+.heritage-content > p {
   max-width: 620px;
   margin-top: 32px;
   color: rgba(255, 255, 255, 0.68);
@@ -415,6 +420,36 @@ a {
   line-height: 1.8;
 }
 
+.heritage-stats {
+  display: flex;
+  gap: 48px;
+  margin-top: 48px;
+}
+
+.heritage-stats span {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.heritage-stats p {
+  margin: 8px 0 0;
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.heritage-watermark {
+  position: absolute;
+  right: -40px;
+  bottom: 40px;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.035);
+  font-size: clamp(7rem, 18vw, 18rem);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  pointer-events: none;
+}
 /* =========================
    RESERVE
 ========================= */
