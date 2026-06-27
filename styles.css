@@ -148,13 +148,13 @@ a {
 }
 
 .hero-visual {
-  flex: 1;
+  flex: 1.25;
   display: flex;
   justify-content: center;
 }
 
 .hero-watch {
-  max-width: 420px;
+  max-width: 1000px;
   width: 100%;
 }
 
