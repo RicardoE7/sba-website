@@ -181,6 +181,12 @@ a {
 
 .showcase-copy {
   max-width: 520px;
+  transition: opacity 0.28s ease, transform 0.28s ease;
+}
+
+.showcase-copy.is-changing {
+  opacity: 0;
+  transform: translateY(18px);
 }
 
 .showcase-eyebrow {

@@ -5,8 +5,12 @@ const canvas = document.querySelector("#watch-canvas");
 const showcase = document.querySelector(".scroll-showcase");
 const title = document.querySelector("#showcase-title");
 const description = document.querySelector("#showcase-description");
+const copy = document.querySelector(".showcase-copy");
 
 const BASE_SCALE = 2;
+
+let currentStepIndex = 0;
+let isChangingText = false;
 
 const scene = new THREE.Scene();
 
@@ -95,7 +99,6 @@ function updateScrollAnimation() {
   watchModel.rotation.y = -0.4 + progress * Math.PI * 1.4;
   watchModel.rotation.x = 0.1 + progress * 0.35;
   watchModel.position.x = progress * -0.55;
-
   watchModel.scale.setScalar(BASE_SCALE);
 
   const stepIndex = Math.min(
@@ -103,8 +106,22 @@ function updateScrollAnimation() {
     showcaseSteps.length - 1
   );
 
-  title.textContent = showcaseSteps[stepIndex].title;
-  description.textContent = showcaseSteps[stepIndex].description;
+  if (stepIndex !== currentStepIndex && !isChangingText) {
+    isChangingText = true;
+    copy.classList.add("is-changing");
+
+    setTimeout(() => {
+      title.textContent = showcaseSteps[stepIndex].title;
+      description.textContent = showcaseSteps[stepIndex].description;
+
+      currentStepIndex = stepIndex;
+      copy.classList.remove("is-changing");
+
+      setTimeout(() => {
+        isChangingText = false;
+      }, 280);
+    }, 280);
+  }
 }
 
 function animate() {
